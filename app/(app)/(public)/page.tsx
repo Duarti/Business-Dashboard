@@ -1,8 +1,8 @@
 import React from "react";
-import LoginClient from "./components/LoginClient";
+import HomeClient from "../components/HomeClient";
 
 const page = async () => {
-  return <LoginClient />;
+  return <HomeClient />;
 };
 
 export default page;

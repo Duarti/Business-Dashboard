@@ -1,3 +1,7 @@
+import { withAuth } from "@/app/actions/withAuth";
+import DashboardClient from "./components/DashboardClient";
+
 export default async function Page() {
-  return null;
+  await withAuth();
+  return <DashboardClient />;
 }
