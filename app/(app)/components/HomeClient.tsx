@@ -4,7 +4,7 @@ import React from "react";
 
 const HomeClient = () => {
   return (
-    <div className="container">
+    <div className="center-container">
       <Link href="/admin/dashboard">
         <p className="p-3">Go to Dashboard</p>
       </Link>

@@ -2,7 +2,7 @@
 
 import { authenticateUsingPassword } from "@/lib/supabase.auth.client";
 import { supabaseForClientComponent as supabase } from "@/lib/supabase.client";
-import { User, UserResponse } from "@supabase/supabase-js";
+import { AuthError, User, UserResponse } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -38,13 +38,24 @@ export default function LoginPage() {
   }
 
   const handleSignIn = async () => {
+    if (!email || !password) return;
     try {
       const res = await authenticateUsingPassword({
         email,
         password,
       });
-      window.location.href = "/admin/dashboard";
-      toast.success("Signed in successfully");
+
+      if (!res.error) {
+        window.location.href = "/admin/dashboard";
+        toast.success("Signed in successfully");
+        return;
+      }
+
+      if (res.error.message === "Invalid login credentials") {
+        toast.error("Invalid login credentials");
+      } else {
+        toast.error("Something went wrong");
+      }
     } catch (error) {
       toast.error("Something went wrong");
     }
@@ -72,7 +83,8 @@ export default function LoginPage() {
 
         <button
           onClick={handleSignIn}
-          className="w-full p-3 rounded-md bg-gray-700 text-white hover:bg-gray-600 focus:outline-none"
+          className="w-full p-3 rounded-md bg-gray-700 enabled:bg-green-600 text-white enabled:hover:bg-green-800 focus:outline-none"
+          disabled={!email || !password}
         >
           Sign In
         </button>

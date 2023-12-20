@@ -58,7 +58,7 @@ const DashboardClient: FC = () => {
           Logout
         </button>
       </div>
-      <div className="container">
+      <div className="center-container">
         <h1 className="text-5xl font-bold mb-10">Dashboard</h1>
         <table className="border-spacing-10">
           <thead>

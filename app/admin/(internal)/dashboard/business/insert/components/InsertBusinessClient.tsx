@@ -29,7 +29,7 @@ const InsertBusinessClient: FC = () => {
   const saveDisabled = isSaving || businessName.length < 3;
 
   return (
-    <div className="w-full min-h-[100vh] flex flex-col items-center justify-center">
+    <div className="center-container">
       <h1 className="text-5xl font-bold mb-10">Add New Business</h1>
       <form className="flex flex-col items-center gap-3">
         <input
